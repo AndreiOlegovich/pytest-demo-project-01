@@ -1,0 +1,9 @@
+# Ignoring
+src/tests/pytest/src/tests/venv
+src/tests/pytest/src/tests/.pytest_cache
+src/tests/pytest/src/tests/app/__pycache__
+src/dev/app/__pycache__/
+.gitignore.swp
+.git
+.idea
+.pytest_cache
