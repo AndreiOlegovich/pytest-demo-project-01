@@ -26,3 +26,4 @@ class TestQuadraticUnittest(unittest.TestCase):
     def test_single_root(self):
         res = quadratic_solve(1, -2, 1)
         self.assertEqual(res, (1.0, None))
+
