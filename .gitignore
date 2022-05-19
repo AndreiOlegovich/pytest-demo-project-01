@@ -6,4 +6,5 @@ src/dev/app/__pycache__/
 .gitignore.swp
 .git
 .idea
-.pytest_cache
+.pytest_cachesrc
+src/dev/__pycache__/
