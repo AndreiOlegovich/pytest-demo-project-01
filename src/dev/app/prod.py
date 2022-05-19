@@ -1,4 +1,4 @@
-def prod(a, b):
+def prod(a: float, b: float) -> float:
     if not all(
             map(lambda p: isinstance(p, (int, float)), (a, b))
     ):
@@ -7,5 +7,5 @@ def prod(a, b):
     return a * b
 
 if __name__ == "__main__":
-    print(prod(2,3))
-    # print(prod("",4))
+    print(prod(2, 3))
+
