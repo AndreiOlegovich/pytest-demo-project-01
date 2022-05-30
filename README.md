@@ -1,4 +1,4 @@
-## Notes for pytest-deom-project-01
+## Notes for pytest-demo-project-01
 
 ### Build Docker container
 
