@@ -3,7 +3,7 @@
 ### Build Docker container
 
 ```
-docker build -t pytest_ubuntu:1.0 -f Dockerfile.ubuntu .
+docker build -t pytest_ubuntu:1.0 -f ./dockerfiles/Dockerfile.ubuntu .
 ```
 
 ### Start container
