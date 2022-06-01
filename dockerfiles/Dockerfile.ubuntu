@@ -15,7 +15,11 @@ RUN mkdir -p $TEST_DIR
 
 WORKDIR $TEST_DIR
 
-ADD src $TEST_DIR
+# old way - ADD
+# ADD src $TEST_DIR
+# new way - create VOLUME
+VOLUME /opt
+
 
 # apt-get is recommended for Docker files
 
