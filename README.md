@@ -1,4 +1,4 @@
-## Notes for pytest-demo-project-01
+## Notes for qa-demo-project
 
 ### Build Docker container
 
