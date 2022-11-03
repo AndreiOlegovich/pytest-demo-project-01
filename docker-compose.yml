@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  ubuntu:
+    container_name: pytest_ubuntu
+    image: pytest_ubuntu
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile.ubuntu
+      args:
+        buildversion: 1
+    ports:
+      - "3000:3000"
+    networks:
+      - pytest_ubuntu_network
+    volumes:
+      - ./logs:/var/www/logs
+    depends_on:
+      - mongodb
+
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    networks:
+      - pytest_ubuntu_network
+
+networks:
+  pytest_ubuntu_network:
+    driver: bridge

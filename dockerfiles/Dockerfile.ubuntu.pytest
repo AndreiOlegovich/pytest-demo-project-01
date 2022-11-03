@@ -18,7 +18,7 @@ WORKDIR $TEST_DIR
 # old way - ADD
 # ADD src $TEST_DIR
 # new way - create VOLUME
-VOLUME /opt
+VOLUME $TEST_DIR
 
 
 # apt-get is recommended for Docker files
