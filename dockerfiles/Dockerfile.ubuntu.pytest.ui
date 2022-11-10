@@ -1,0 +1,53 @@
+# getting base image ubuntu
+FROM ubuntu:20.04
+
+MAINTAINER andreyolegovich.ru
+
+CMD ["echo", "HH: image is creating"]
+
+ENV TEST_DIR=/opt 
+
+ENV PYTHONPATH=TEST_DIR
+ENV TZ=Europe/Helsinki
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN mkdir -p $TEST_DIR
+
+WORKDIR $TEST_DIR
+
+# old way - ADD
+# ADD src $TEST_DIR
+# new way - create VOLUME
+VOLUME $TEST_DIR
+
+
+# apt-get is recommended for Docker files
+
+# install linux utils
+RUN apt-get -y update \
+  && apt-get install -y dialog \
+  && apt-get install -y apt-utils \
+  && apt-get install -y tree vim \
+  && apt-get install -y curl gcc g++ make \
+  && apt-get -y update \
+  && apt-get -y upgrade
+
+
+# install python
+RUN apt-get install -y python3 python3-pip \
+  && apt-get install -y curl gcc g++ make \
+  && cd /usr/local/bin \
+  && ln -s /usr/bin/python3 python \
+  && python -m pip install --upgrade pip \
+  && python -m pip install pytest \
+  && python -m pip install playwright \
+  && curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh \
+  && bash nodesource_setup.sh \
+  && apt-get install nodejs
+
+# RUN npx playwright install-deps
+
+# initialize RFBrowser
+RUN cd $TEST_DIR \
+  && playwright install
+  
