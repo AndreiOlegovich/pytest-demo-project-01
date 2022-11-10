@@ -1,5 +1,13 @@
 ## Notes for qa-demo-project
 
+### With Docker Compose
+
+```
+docker-compose build
+docker-compose up -d
+docker-compose down
+```
+
 ### Build Docker container
 
 ```

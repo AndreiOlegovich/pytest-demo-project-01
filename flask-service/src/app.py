@@ -71,6 +71,74 @@ def delete_product(id):
 
     return f'Product with id {id} not found', 404
 
+# curl --header "Content-Type: application/json" --request POST --data '{"factor_1": 4, "factor_2": 7}' -v http://localhost:5000/mult
+@app.route('/mult', methods=['GET', 'PUT', 'POST'])
+def multiply_two():
+    if request.method == 'GET':
+        return '''This endpoint allows to multiply numbers.\n
+                    Use POST method to send two numbers   \n 
+                    factor_1 and factor_2  \n
+                    of type int or float.  \n
+                    format request body as JSON. \n
+                    Response will include info about  \n
+                    their product.  \n
+        '''
+
+    elif request.method == 'PUT':
+        try:
+            factor_1_str = request.args.get('factor_1')
+            factor_2_str = request.args.get('factor_2')
+        except:
+            return jsonify({"Error 412": "something is wrong"}), 412
+
+        try:
+            factor_1 = float(factor_1_str)
+        except:
+            return jsonify({"Error 412": "factor_1 is not a number"}), 412
+
+        try:
+            factor_2 = float(factor_2_str)
+        except:
+            return jsonify({"Error 412": "factor_2 is not a number"}), 412
+
+        try:
+            product = factor_1 * factor_2
+            ok_response = ('Product of {} and {} is {}'.format(factor_1, factor_2, product))
+            return jsonify({"Success": ok_response}), 200
+        except:
+            return jsonify({"Error 412": "something is wrong 2"}), 412
+
+
+    elif request.method == 'POST':
+        # show the post with the given id, the id is an integer
+        # return 'Post %d' % post_id
+        # body = request.get_json()
+        req_data = request.get_json()
+
+        try:
+            factor_1 = float(req_data.get('factor_1'))
+        except:
+            return jsonify({"Error 412": "factor_1 is not a number"}), 412
+
+        try:
+            factor_2 = float(req_data.get('factor_2'))
+        except:
+            return jsonify({"Error 412": "factor_2 is not a number"}), 412
+
+        try:
+            product = factor_1 * factor_2
+            # ok_response = f"Product of {factor_1} and {factor_2} is {product}"
+            # ok_response = ('Product of {} and {} is {}'.format(factor_1,factor_2,product))
+            ok_response = product
+            return jsonify({"Success": ok_response}), 200
+
+        except:
+            return jsonify({"Error 412": "can not multiply"}), 412
+
+        # return jsonify({"Success": ok_response}), 200
+        return ok_response
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
