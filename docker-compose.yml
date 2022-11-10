@@ -1,12 +1,12 @@
 version: '3.7'
 
 services:
-  ubuntu:
+  pytest_ubuntu_with_ui:
     container_name: pytest_ubuntu
     image: pytest_ubuntu
     build:
       context: ./dockerfiles
-      dockerfile: Dockerfile.ubuntu
+      dockerfile: Dockerfile.ubuntu.pytest.ui
       args:
         buildversion: 1
     ports:
