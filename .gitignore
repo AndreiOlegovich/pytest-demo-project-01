@@ -9,3 +9,4 @@ src/dev/app/__pycache__/
 .idea
 .pytest_cachesrc
 src/dev/__pycache__/
+flask-service/venv
