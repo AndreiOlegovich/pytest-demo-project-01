@@ -11,19 +11,12 @@ services:
         buildversion: 1
     ports:
       - "3000:3000"
-    networks:
-      - pytest_ubuntu_network
     volumes:
-      - ./logs:/var/www/logs
-    depends_on:
-      - mongodb
+      - ./src:/opt
+    tty: true
+    command: tail -F /dev/null
 
-  mongodb:
-    container_name: mongodb
-    image: mongo
-    networks:
-      - pytest_ubuntu_network
-
-networks:
-  pytest_ubuntu_network:
-    driver: bridge
+  flaskservice:
+    build: flask-service
+    ports:
+      - "5000:5000"
