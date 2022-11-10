@@ -5,6 +5,8 @@
 ```
 docker-compose build
 docker-compose up -d
+docker exec -it pytest_ubuntu bash
+python -m pytest -v tests/pytest/src/tests/app
 docker-compose down
 ```
 
