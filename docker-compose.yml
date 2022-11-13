@@ -11,6 +11,9 @@ services:
         buildversion: 1
     ports:
       - "3000:3000"
+    networks:
+      net1:
+        ipv4_address: 10.5.0.2
     volumes:
       - ./src:/opt
     tty: true
@@ -20,3 +23,18 @@ services:
     build: flask-service
     ports:
       - "5000:5000"
+    networks:
+      net1:
+        ipv4_address: 10.5.0.3
+
+
+networks:
+  net1:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+         gateway: 10.5.0.1
+         aux_addresses:
+          pytest_ubuntu: 10.5.0.5
+          flaskservice: 10.5.0.6
