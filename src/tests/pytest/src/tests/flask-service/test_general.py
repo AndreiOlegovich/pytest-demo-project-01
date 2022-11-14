@@ -1,5 +1,6 @@
 import pytest
 import requests
+import json
 
 target_ip = "10.5.0.3"
 
@@ -7,6 +8,7 @@ target_ip = "10.5.0.3"
 
 def test_get_prod_id():
     res = requests.get(f"http://{target_ip}:5000/product/1")
+    res = res.json()["id"]
     expected_result = 1
     assert res == expected_result
 
