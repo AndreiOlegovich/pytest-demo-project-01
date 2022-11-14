@@ -5,7 +5,6 @@ import json
 target_ip = "10.5.0.3"
 
 
-
 def test_get_prod_id():
     res = requests.get(f"http://{target_ip}:5000/product/1")
     res = res.json()["id"]
@@ -13,6 +12,18 @@ def test_get_prod_id():
     assert res == expected_result
 
 
+def test_get_mult_info():
+    res = requests.get(f"http://{target_ip}:5000/mult")
+    res = res.text
+    expected_result = '''This endpoint allows to multiply numbers.\n
+                    Use POST method to send two numbers   \n 
+                    factor_1 and factor_2  \n
+                    of type int or float.  \n
+                    format request body as JSON. \n
+                    Response will include info about  \n
+                    their product.  \n
+        '''
+    assert res == expected_result
 @pytest.mark.parametrize(
     "args, expected_result",
     [
