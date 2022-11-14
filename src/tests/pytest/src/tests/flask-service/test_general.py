@@ -51,10 +51,8 @@ def test_param_prod(args, expected_result):
         "factor_2": args[1]
     }
     payload = json.dumps(payload)
-    print("payload: ", payload)
     url = f"http://{target_ip}:5000/mult"
     res = requests.post(url, headers=headers, data=payload)
     res = res.json()["Success"]
-
 
     assert res == expected_result
