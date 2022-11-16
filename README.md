@@ -1,5 +1,16 @@
 ## Notes for qa-demo-project
 
+### Quick Test
+
+#### Outside Containers:
+```
+curl http://localhost/products
+```
+#### Inside Container:
+```
+curl http://10.5.0.3:5000/products
+```
+
 ### With Docker Compose
 
 ```
@@ -7,6 +18,7 @@ docker-compose build
 docker-compose up -d
 docker exec -it pytest_ubuntu bash
 python -m pytest -v tests/pytest/src/tests/app
+python -m pytest -v tests/pytest/src/tests/flask_service
 docker-compose down
 ```
 
