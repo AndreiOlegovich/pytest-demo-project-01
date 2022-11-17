@@ -35,6 +35,23 @@ services:
       net1:
         ipv4_address: 10.5.0.4
 
+  robot_ubuntu:
+    container_name: robot_ubuntu
+    image: robot_ubuntu
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile.ubuntu.robotfw
+      args:
+        buildversion: 1
+    ports:
+      - "3000:3000"
+    networks:
+      net1:
+        ipv4_address: 10.5.0.5
+    volumes:
+      - ./src:/opt
+    tty: true
+    command: tail -F /dev/null
 
 networks:
   net1:
