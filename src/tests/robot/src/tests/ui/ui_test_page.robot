@@ -86,3 +86,12 @@ Radio Buttons
   Get Element States    ${button0}    not contains    checked
   Get Element States    ${button2}    validate    checked
   Close Browser
+
+
+Checkboxes
+  [Tags]    checkbox
+  New Page    https://www.urn.su/qa/ui/basic_test/
+  ${cersei}=    Get Element    //input[@id="cerseiId"]
+  Check Checkbox    ${cersei}
+  Get Element States    ${cersei}    validate    checked
+  Close Browser
