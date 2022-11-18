@@ -25,8 +25,8 @@ Start Chromium Browser
 *** Test Cases ***
 
 Starting a browser with a page
-  New Page  https://eth1.ru
-  Get Title  ==  eth1.ru
+  New Page    https://www.urn.su/qa/ui/basic_test/
+  Get Title  ==  UI Test Page
   Close Browser
 
 
@@ -56,4 +56,15 @@ Italy
   ${url0}=    Get From List    ${urls}    0
   Click    ${url0}
   Get Title    ==    8 марта в Италии в 2022 году
+  Close Browser
+
+
+Img
+  New Page    https://www.urn.su/qa/ui/basic_test/
+  ${urls}=    Get Elements    //img[@class="w100 firstimage"]
+  # depends on Collections lib
+  Log    ${urls}
+  ${url0}=    Get From List    ${urls}    1
+  Click    ${url0}
+  Get Title    ==    Тренировка для людей с проблемами со спиной и позвоночником
   Close Browser
