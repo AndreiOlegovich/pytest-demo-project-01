@@ -7,11 +7,16 @@ Library  Browser
         ...  retry_assertions_for=0:00:03
 Library  Collections
 
+Force Tags  ui
+
 *** Variables ***
 
 ${url}  https://eth1.ru
 
 *** Keywords ***
+
+Test Setup Tasks
+  Start Chromium Browser
 
 Start Chromium Browser
   New Browser  browser=chromium  headless=True
@@ -20,13 +25,20 @@ Start Chromium Browser
 *** Test Cases ***
 
 Starting a browser with a page
-  Start Chromium Browser
   New Page  https://eth1.ru
   Get Title  ==  eth1.ru
   Close Browser
 
+
+Fill Form
+  New Page    https://www.urn.su/qa/ui/basic_test/
+  Fill Text  //input[@id="name1"]    topbicycle.ru
+  Click    //input[@id="submit1"]
+  Get Title    ==    TopBicycle
+  Close Browser
+
+
 Renovation
-  Start Chromium Browser
   New Page    https://www.urn.su/qa/ui/basic_test/
   ${urls}=    Get Elements  text="Renovation"
   # depends on Collections lib
@@ -35,13 +47,13 @@ Renovation
   Get Title    ==    Ремонт квартир на Коста-дель-Соль
   Close Browser
 
+
 Italy
-  Start Chromium Browser
   New Page    https://www.urn.su/qa/ui/basic_test/
-  ${urls}=    Get Elements    text="Italy"
+  ${urls}=    Get Elements    //a[@class="march8"]
   # depends on Collections lib
   Log    ${urls}
-  ${url0}=    Get From List    ${urls}    1
+  ${url0}=    Get From List    ${urls}    0
   Click    ${url0}
   Get Title    ==    8 марта в Италии в 2022 году
   Close Browser
