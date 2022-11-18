@@ -61,10 +61,23 @@ Italy
 
 Img
   New Page    https://www.urn.su/qa/ui/basic_test/
-  ${urls}=    Get Elements    //img[@class="w100 firstimage"]
+  ${images}=    Get Elements    //img[@class="w100 firstimage"]
   # depends on Collections lib
-  Log    ${urls}
-  ${url0}=    Get From List    ${urls}    1
-  Click    ${url0}
+  ${img0}=    Get From List    ${images}    1
+  Click    ${img0}
   Get Title    ==    Тренировка для людей с проблемами со спиной и позвоночником
+  Close Browser
+
+
+Radio Buttons
+  [Tags]    radio
+  New Page    https://www.urn.su/qa/ui/basic_test/
+  ${buttons}=    Get Elements    //input[@name="house"]
+  # depends on Collections lib
+  ${button0}=    Get From List    ${buttons}    0
+  ${button2}=    Get From List    ${buttons}    2
+  Get Element States    ${button0}    validate    checked
+  Check Checkbox    ${button2}
+  Get Element States    ${button0}    not contains    checked
+  Get Element States    ${button2}    validate    checked
   Close Browser
