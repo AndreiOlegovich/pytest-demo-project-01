@@ -25,12 +25,14 @@ Start Chromium Browser
 *** Test Cases ***
 
 Starting a browser with a page
+  [Tags]    title
   New Page    https://www.urn.su/qa/ui/basic_test/
   Get Title  ==  UI Test Page
   Close Browser
 
 
-Fill Form
+Fill Field
+  [Tags]    field
   New Page    https://www.urn.su/qa/ui/basic_test/
   Fill Text  //input[@id="name1"]    topbicycle.ru
   Click    //input[@id="submit1"]
@@ -39,6 +41,7 @@ Fill Form
 
 
 Renovation
+  [Tags]    renovation
   New Page    https://www.urn.su/qa/ui/basic_test/
   ${urls}=    Get Elements  text="Renovation"
   # depends on Collections lib
@@ -49,6 +52,7 @@ Renovation
 
 
 Italy
+  [Tags]    italy
   New Page    https://www.urn.su/qa/ui/basic_test/
   ${urls}=    Get Elements    //a[@class="march8"]
   # depends on Collections lib
@@ -60,6 +64,7 @@ Italy
 
 
 Img
+  [Tags]    img
   New Page    https://www.urn.su/qa/ui/basic_test/
   ${images}=    Get Elements    //img[@class="w100 firstimage"]
   # depends on Collections lib
