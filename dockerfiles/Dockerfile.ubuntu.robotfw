@@ -16,7 +16,7 @@ ENV build=buildversion
 CMD ["echo", $build]
 
 RUN mkdir -p $TEST_DIR
-
+WORKDIR $TEST_DIR
 VOLUME /opt
 
 # apt-get is recommended for Docker files
