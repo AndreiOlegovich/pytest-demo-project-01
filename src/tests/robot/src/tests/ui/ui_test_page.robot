@@ -95,3 +95,22 @@ Checkboxes
   Check Checkbox    ${cersei}
   Get Element States    ${cersei}    validate    checked
   Close Browser
+
+
+Dropdown
+  [Tags]    dropdown
+  New Page    https://www.urn.su/qa/ui/basic_test/
+  ${drd}=    Select Options By    css=#swords    value    dawn
+  ${dd}=    Get Element    //select[@id="swords"]
+  ${js}=    Evaluate Javascript  ${dd}
+  ...    function validate() {
+  ...    var ddl = document.getElementById("swords");
+  ...    var selectedValue = ddl.options[ddl.selectedIndex].value;
+  ...    if (selectedValue == "dawn") {
+  ...    return    0
+  ...    }}
+  ${check}=       ${js}
+  Should Be Equal    ${check}    0
+
+
+  Close Browser
