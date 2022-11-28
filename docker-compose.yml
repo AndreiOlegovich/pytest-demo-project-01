@@ -44,7 +44,7 @@ services:
       args:
         buildversion: 1
     ports:
-      - "3000:3000"
+      - "3001:3001"
     networks:
       net1:
         ipv4_address: 10.5.0.5
