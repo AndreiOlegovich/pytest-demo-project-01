@@ -18,6 +18,9 @@ ${url}  https://eth1.ru
 Test Setup Tasks
   Start Chromium Browser
 
+Test Teardown Tasks
+  Close Browser
+
 Start Chromium Browser
   New Browser  browser=chromium  headless=True
   New Context  viewport={'width': 1920, 'height': 1080}  ignoreHTTPSErrors=True
@@ -85,7 +88,6 @@ Radio Buttons
   Check Checkbox    ${button2}
   Get Element States    ${button0}    not contains    checked
   Get Element States    ${button2}    validate    checked
-  Close Browser
 
 
 Checkboxes
@@ -94,23 +96,39 @@ Checkboxes
   ${cersei}=    Get Element    //input[@id="cerseiId"]
   Check Checkbox    ${cersei}
   Get Element States    ${cersei}    validate    checked
-  Close Browser
 
 
 Dropdown
   [Tags]    dropdown
   New Page    https://www.urn.su/qa/ui/basic_test/
-  ${drd}=    Select Options By    css=#swords    value    dawn
-  ${dd}=    Get Element    //select[@id="swords"]
-  ${js}=    Evaluate Javascript  ${dd}
-  ...    function validate() {
-  ...    var ddl = document.getElementById("swords");
-  ...    var selectedValue = ddl.options[ddl.selectedIndex].value;
-  ...    if (selectedValue == "dawn") {
-  ...    return    0
-  ...    }}
-  ${check}=       ${js}
-  Should Be Equal    ${check}    0
+  Select Options By    css=#swords    value    dawn
+  Get Element States    //option[@value="dawn"]    contains    selected
 
 
-  Close Browser
+Table
+  [Tags]    table
+  New Page    https://www.urn.su/qa/ui/basic_test/
+  ${table}=    Get Element    //table[@class="basictable"]
+  ${tb_topic}=    Get Table Cell Element    ${table}    "Topic"    "2018"
+  Get Text    ${tb_topic}    ==    Bicycles
+  ${hh_topic}=    Get Table Cell Element    ${table}    1    1
+  Get Text    ${hh_topic}    ==    Travel, Holidays
+
+
+Nested Table
+  [Tags]    nested_table
+  New Page    https://www.urn.su/qa/ui/basic_test/
+
+  ${table}=    Get Element    //table[@class="houses tcont5"]
+  ${st}=    Get Table Cell Element    ${table}    0    0
+  Get Text    ${st}    ==    Starks
+
+  ${nested}=    Get Element    xpath=//html/body/main/table[3]/tbody/tr/td[2]/table
+  ${r}=    Get Table Cell Element    ${nested}    0    2
+  Get Text    ${r}    ==    Rob
+
+
+
+
+
+
