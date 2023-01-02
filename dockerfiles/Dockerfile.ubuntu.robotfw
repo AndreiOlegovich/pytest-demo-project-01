@@ -1,14 +1,14 @@
 # getting base image ubuntu
 FROM ubuntu:22.04
 
-MAINTAINER andreyolegovich.ru
+LABEL maintainer="andreyolegovich.ru"
 ARG  buildversion
 
 CMD ["echo", "HH: image is creating"]
 
 ENV TEST_DIR=/opt 
 
-ENV PYTHONPATH=TEST_DIR
+ENV PYTHONPATH=$TEST_DIR
 ENV TZ=Europe/Helsinki
 ENV DEBIAN_FRONTEND=noninteractive
 ENV build=buildversion
@@ -16,8 +16,8 @@ ENV build=buildversion
 CMD ["echo", $build]
 
 RUN mkdir -p $TEST_DIR
-WORKDIR $TEST_DIR
-VOLUME /opt
+WORKDIR $TEST_DIR/tests/robot
+VOLUME $TEST_DIR
 
 # apt-get is recommended for Docker files
 
@@ -54,8 +54,9 @@ RUN apt-get install -y nodejs && \
   adduser pwuser
 
 # install robot
-#RUN python -m pip install robotframework
-#RUN python -m pip install robotframework-browser
+# skipped since now robot is installed from requirements
+# RUN python -m pip install robotframework
+# RUN python -m pip install robotframework-browser
 
 
 # install dependencies
