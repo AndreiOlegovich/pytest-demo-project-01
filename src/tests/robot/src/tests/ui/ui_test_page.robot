@@ -128,6 +128,13 @@ Nested Table
   Get Text    ${r}    ==    Rob
 
 
+Upload File
+  [Tags]    upload
+  New Page    https://www.devhops.ru/login/free_upload/
+  Upload File By Selector    //input[@type="file"]    heihei_logo.jpg
+  Click    id=submit
+  Get Title    ==    Success
+
 
 
 
