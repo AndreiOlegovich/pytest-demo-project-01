@@ -10,6 +10,10 @@ src/tests/robot/src/tests/ui/output.xml
 src/tests/robot/src/tests/ui/playwright-log.txt
 src/tests/robot/src/tests/ui/report.html
 src/tests/robot/src/tests/ui/browser
+src/tests/robot/log.html
+src/tests/robot/output.xml
+src/tests/robot/playwright-log.txt
+src/tests/robot/report.html
 
 .gitignore.swp
 .git
