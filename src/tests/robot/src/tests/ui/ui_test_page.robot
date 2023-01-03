@@ -6,12 +6,14 @@ Library  Browser
         ...  auto_closing_level=TEST
         ...  retry_assertions_for=0:00:03
 Library  Collections
+Library  DateTime
 
 Force Tags  ui
 
 *** Variables ***
 
 ${url}  https://eth1.ru
+
 
 *** Keywords ***
 
@@ -62,7 +64,9 @@ Italy
   Log    ${urls}
   ${url0}=    Get From List    ${urls}    0
   Click    ${url0}
-  Get Title    ==    8 марта в Италии в 2022 году
+  # datetime formate allowes attributes
+  ${date}=  Get Current Date  result_format=datetime
+  Get Title    ==    8 марта в Италии в ${date.year} году
   Close Browser
 
 
