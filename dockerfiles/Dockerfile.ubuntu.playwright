@@ -1,7 +1,7 @@
 # getting base image ubuntu
 FROM ubuntu:22.04
 
-MAINTAINER andreyolegovich.ru
+LABEL maintainer="andreyolegovich.ru"
 
 ARG DOCKER_IMAGE_NAME_TEMPLATE="mcr.microsoft.com/playwright:v%version%-focal"
 
