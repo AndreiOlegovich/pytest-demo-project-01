@@ -1,9 +1,12 @@
-version: '3.7'
+# docker-compose.yml
+version: '3.8'
 
 services:
   pytest_ubuntu:
     container_name: pytest_ubuntu
     image: pytest_ubuntu
+    # priveleged: true
+    # user: root
     build:
       context: ./dockerfiles
       dockerfile: Dockerfile.ubuntu.pytest
@@ -53,6 +56,53 @@ services:
     tty: true
     command: tail -F /dev/null
 
+  jenkins:
+    # image specified in Dockerfile
+    # image: jenkins/jenkins:lts
+    restart: always
+    privileged: true
+    user: root
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile.jenkins.cloud
+      args:
+        buildversion: 1
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    container_name: jenkins
+    networks:
+      net1:
+        ipv4_address: 10.5.0.6
+      jenkins:
+        ipv4_address: 10.7.0.6
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./jenkins:/home
+
+  jenkins_cloud:
+    # image specified in Dockerfile
+    # image: alpine/socat
+    restart: always
+    privileged: true
+    user: root
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile.jenkins.cloud
+      args:
+        buildversion: 1
+    ports:
+      - "2376:2375"
+    container_name: jenkins_cloud
+    networks:
+      net1:
+        ipv4_address: 10.5.0.7
+      jenkins:
+        ipv4_address: 10.7.0.7
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock
+
 networks:
   net1:
     driver: bridge
@@ -60,3 +110,10 @@ networks:
      config:
        - subnet: 10.5.0.0/16
          gateway: 10.5.0.1
+  jenkins:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.7.0.0/16
+         gateway: 10.7.0.1
+    
