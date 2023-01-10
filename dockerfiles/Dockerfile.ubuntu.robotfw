@@ -4,8 +4,6 @@ FROM ubuntu:22.04
 LABEL maintainer="andreyolegovich.ru"
 ARG  buildversion
 
-CMD ["echo", "HH: image is creating"]
-
 ENV TEST_DIR=/opt 
 
 ENV PYTHONPATH=$TEST_DIR
