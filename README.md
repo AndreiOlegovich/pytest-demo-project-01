@@ -44,6 +44,8 @@ python -m pytest -v tests/pytest/src/tests/app
 
 ### Docker images for Jenkins workers
 
-```
+
 [hub.docker](https://hub.docker.com/repository/docker/andreissh/jenkins-docker-slave/general)
-```
+
+[Source code](https://github.com/AndreiOlegovich/jenkins-docker-slave/)
+
