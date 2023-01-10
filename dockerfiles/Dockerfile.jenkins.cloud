@@ -1,6 +1,0 @@
-FROM alpine/socat
-LABEL maintainer="andreyolegovich.ru"
-USER root
-EXPOSE 4243
-EXPOSE 32768-60999
-RUN apk update

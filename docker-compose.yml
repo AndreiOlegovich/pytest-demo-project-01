@@ -80,29 +80,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./jenkins:/home
 
-  jenkins_cloud:
-    # image specified in Dockerfile
-    # image: alpine/socat
-    restart: always
-    privileged: true
-    user: root
-    build:
-      context: ./dockerfiles
-      dockerfile: Dockerfile.jenkins.cloud
-      args:
-        buildversion: 1
-    ports:
-      - "2376:2375"
-    container_name: jenkins_cloud
-    networks:
-      net1:
-        ipv4_address: 10.5.0.7
-      jenkins:
-        ipv4_address: 10.7.0.7
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    command: tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock
-
 networks:
   net1:
     driver: bridge
