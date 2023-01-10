@@ -37,6 +37,13 @@ docker run -it --name qa_demo_ubuntu -v $(pwd)/src:/opt qa_demo_ubuntu:1.0 bash
 ### Start tests
 
 #### Pytest
+
 ```
 python -m pytest -v tests/pytest/src/tests/app
+```
+
+### Docker images for Jenkins workers
+
+```
+[hub.docker](https://hub.docker.com/repository/docker/andreissh/jenkins-docker-slave/general)
 ```
