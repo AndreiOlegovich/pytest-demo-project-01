@@ -64,7 +64,7 @@ services:
     user: root
     build:
       context: ./dockerfiles
-      dockerfile: Dockerfile.jenkins.cloud
+      dockerfile: Dockerfile.jenkins
       args:
         buildversion: 1
     ports:
