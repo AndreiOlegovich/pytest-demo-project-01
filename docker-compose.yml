@@ -17,6 +17,9 @@ services:
     networks:
       net1:
         ipv4_address: 10.5.0.2
+    extra_hosts:
+      - flask.andrei.com:10.5.0.3
+      - jenkins.andrei.com:10.7.0.6
     volumes:
       - ./src:/opt
     tty: true
@@ -29,6 +32,8 @@ services:
     networks:
       net1:
         ipv4_address: 10.5.0.3
+    extra_hosts:
+      - jenkins.andrei.com:10.7.0.6
 
   web:
     build: nginx
@@ -37,6 +42,9 @@ services:
     networks:
       net1:
         ipv4_address: 10.5.0.4
+    extra_hosts:
+      - flask.andrei.com:10.5.0.3
+      - jenkins.andrei.com:10.7.0.6
 
   robot_ubuntu:
     container_name: robot_ubuntu
@@ -51,6 +59,9 @@ services:
     networks:
       net1:
         ipv4_address: 10.5.0.5
+    extra_hosts:
+      - flask.andrei.com:10.5.0.3
+      - jenkins.andrei.com:10.7.0.6
     volumes:
       - ./src:/opt
     tty: true
@@ -76,6 +87,8 @@ services:
         ipv4_address: 10.5.0.6
       jenkins:
         ipv4_address: 10.7.0.6
+    extra_hosts:
+      - flask.andrei.com:10.5.0.3
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./jenkins:/home
