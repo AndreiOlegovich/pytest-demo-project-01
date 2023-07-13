@@ -15,4 +15,5 @@ RUN apt-get -y update \
   && apt-get install -y tree vim curl make wget iproute2 iputils-ping
 RUN apt-get update && apt-get install -y docker-ce-cli
 USER jenkins
-RUN jenkins-plugin-cli --plugins "blueocean:1.26.0 docker-workflow:563.vd5d2e5c4007f"
+# RUN jenkins-plugin-cli --plugins "docker-workflow:563.vd5d2e5c4007f"
+# RUN jenkins-plugin-cli --plugins "blueocean:1.26.0"
